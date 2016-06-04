@@ -88,7 +88,8 @@ module Hakyll.Contrib.SmallBlog
 
 import Control.Arrow ((>>>))
 
-import Text.Pandoc (ParserState, WriterOptions)
+import Text.Pandoc (WriterOptions)
+import Text.Pandoc.Parsing (ParserState)
 
 import Hakyll
 
