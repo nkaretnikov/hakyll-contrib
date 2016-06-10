@@ -148,7 +148,7 @@ smallBlogWith conf = do
         Nothing -> return ()
         Just f  -> do
             match  "atom.xml" $ route idRoute
-            create "atom.xml" $ requireAll_ "posts/*" >>> renderAtom f
+            create "atom.xml" $ loadAll "posts/*" >>> renderAtom f
             return ()
   where
     -- Useful combinator here
