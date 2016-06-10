@@ -174,8 +174,8 @@ smallBlogWith conf = do
     -- Top-level pages
     topLevel = do
         route $ setExtension "html"
-        compile $ pageCompilerWithFields (readerOptions conf)
-            (writerOptions conf) id topLevelFields
+        compile $ pandocCompilerWithTransform (readerOptions conf)
+            (writerOptions conf) id
                 >>= loadAndApplyTemplate "templates/default.html" defaultContext
                 >>= relativizeUrls
 
