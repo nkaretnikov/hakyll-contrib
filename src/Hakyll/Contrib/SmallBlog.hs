@@ -88,7 +88,7 @@ module Hakyll.Contrib.SmallBlog
 
 import Control.Arrow ((>>>))
 
-import Text.Pandoc (WriterOptions)
+import Text.Pandoc (ReaderOptions, WriterOptions)
 import Text.Pandoc.Parsing (ParserState)
 
 import Hakyll
@@ -99,7 +99,7 @@ data SmallBlogConfiguration = SmallBlogConfiguration
     { -- | Number of recent posts that are available
       numberOfRecentPosts :: Int
     , -- | Parser state for pandoc, i.e. read options
-      parserState         :: ParserState
+      readerOptions       :: ReaderOptions
     , -- | Writer options for pandoc
       writerOptions       :: WriterOptions
     , -- | Atom feed configuration
@@ -111,7 +111,7 @@ data SmallBlogConfiguration = SmallBlogConfiguration
 defaultSmallBlogConfiguration :: SmallBlogConfiguration
 defaultSmallBlogConfiguration = SmallBlogConfiguration
     { numberOfRecentPosts = 3
-    , parserState         = defaultHakyllParserState
+    , readerOptions       = defaultHakyllReaderOptions
     , writerOptions       = defaultHakyllWriterOptions
     , atomFeed            = Nothing
     }
