@@ -166,7 +166,7 @@ smallBlogWith conf = do
     -- Posts
     post = do
         route $ setExtension "html"
-        compile $ pageCompilerWith (readerOptions conf) (writerOptions conf)
+        compile $ pandocCompilerWith (readerOptions conf) (writerOptions conf)
             >>> applyTemplateCompiler "templates/post.html"
             >>> applyTemplateCompiler "templates/default.html"
             >>> relativizeUrlsCompiler
