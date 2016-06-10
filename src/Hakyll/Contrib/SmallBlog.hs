@@ -169,7 +169,7 @@ smallBlogWith conf = do
         compile $ pandocCompilerWith (readerOptions conf) (writerOptions conf)
             >>= loadAndApplyTemplate "templates/post.html" defaultContext
             >>= loadAndApplyTemplate "templates/default.html" defaultContext
-            >>= relativizeUrlsCompiler
+            >>= relativizeUrls
 
     -- Top-level pages
     topLevel = do
@@ -177,7 +177,7 @@ smallBlogWith conf = do
         compile $ pageCompilerWithFields (readerOptions conf)
             (writerOptions conf) id topLevelFields
                 >>= loadAndApplyTemplate "templates/default.html" defaultContext
-                >>= relativizeUrlsCompiler
+                >>= relativizeUrls
 
     -- Add the fields we need to top-level pages
     topLevelFields = setFieldPostList recentFirst "allPosts"
