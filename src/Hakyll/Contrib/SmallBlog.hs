@@ -166,7 +166,7 @@ smallBlogWith conf = do
     -- Posts
     post = do
         route $ setExtension "html"
-        compile $ pageCompilerWith (parserState conf) (writerOptions conf)
+        compile $ pageCompilerWith (readerOptions conf) (writerOptions conf)
             >>> applyTemplateCompiler "templates/post.html"
             >>> applyTemplateCompiler "templates/default.html"
             >>> relativizeUrlsCompiler
@@ -174,7 +174,7 @@ smallBlogWith conf = do
     -- Top-level pages
     topLevel = do
         route $ setExtension "html"
-        compile $ pageCompilerWithFields (parserState conf)
+        compile $ pageCompilerWithFields (readerOptions conf)
             (writerOptions conf) id topLevelFields
                 >>> applyTemplateCompiler "templates/default.html"
                 >>> relativizeUrlsCompiler
