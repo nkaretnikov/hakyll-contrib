@@ -167,17 +167,17 @@ smallBlogWith conf = do
     post = do
         route $ setExtension "html"
         compile $ pandocCompilerWith (readerOptions conf) (writerOptions conf)
-            >>> applyTemplateCompiler "templates/post.html"
-            >>> applyTemplateCompiler "templates/default.html"
-            >>> relativizeUrlsCompiler
+            >>= loadAndApplyTemplate "templates/post.html" defaultContext
+            >>= loadAndApplyTemplate "templates/default.html" defaultContext
+            >>= relativizeUrlsCompiler
 
     -- Top-level pages
     topLevel = do
         route $ setExtension "html"
         compile $ pageCompilerWithFields (readerOptions conf)
             (writerOptions conf) id topLevelFields
-                >>> applyTemplateCompiler "templates/default.html"
-                >>> relativizeUrlsCompiler
+                >>= loadAndApplyTemplate "templates/default.html" defaultContext
+                >>= relativizeUrlsCompiler
 
     -- Add the fields we need to top-level pages
     topLevelFields = setFieldPostList recentFirst "allPosts"
